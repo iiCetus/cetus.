@@ -61,6 +61,30 @@
             width: 100%;
             height: 100%;
         }
+
+        /* Carousel */
+        .carousel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 200px;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .carousel img.active {
+            opacity: .7;
+        }
     </style>
 </head>
 <body>
@@ -78,6 +102,15 @@
             </a>
         </p>
     </div>
+    <div class="carousel">
+        <img class="active" src="cat1.jpg" alt="Image 1">
+        <img src="cat2.png" alt="Image 2">
+        <img src="cat3.png" alt="Image 3">
+        <img src="cat4.png" alt="Image 4">
+        <img src="cat5.png" alt="Image 5">
+        <img src="cat6.png" alt="Image 6">
+        <img src="cat7.png" alt="Image 7">
+    </div>
     <div class="audio-player">
         <button class="audio-button" id="play-button">
             <img src="blehh.png" alt="Play">
@@ -86,18 +119,26 @@
     <audio id="audio" src="static.mp3"></audio>
 
     <script>
-        var audio = document.getElementById('audio');
-        var playButton = document.getElementById('play-button');
+        var images = document.querySelectorAll('.carousel img');
+        var currentIndex = 0;
+        
+        function showImage(index) {
+            images.forEach(function (img) {
+                img.classList.remove('active');
+            });
+            
+            images[index].classList.add('active');
+        }
+        
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+        
+        setInterval(nextImage, 2000); // Change image every 2 seconds
 
-        playButton.addEventListener('click', function () {
-            if (audio.paused) {
-                audio.play();
-                playButton.innerHTML = '<img src="blehh.png" alt="Pause">';
-            } else {
-                audio.pause();
-                playButton.innerHTML = '<img src="serious.png" alt="Play">';
-            }
-        });
+        // Display the first image initially
+        showImage(0);
     </script>
 </body>
 </html>
