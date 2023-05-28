@@ -112,33 +112,35 @@
         <img src="cat7.png" alt="Image 7">
     </div>
     <div class="audio-player">
-        <button class="audio-button" id="play-button">
-            <img src="blehh.png" alt="Play">
+        <button class="audio-button" id="play-button" onclick="toggleAudio()">
+            <img id="play-icon" src="blehh.png" alt="Play">
         </button>
+        
     </div>
     <audio id="audio" src="static.mp3"></audio>
 
     <script>
-        var images = document.querySelectorAll('.carousel img');
-        var currentIndex = 0;
-        
-        function showImage(index) {
-            images.forEach(function (img) {
-                img.classList.remove('active');
-            });
-            
-            images[index].classList.add('active');
-        }
-        
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage(currentIndex);
-        }
-        
-        setInterval(nextImage, 2000); // Change image every 2 seconds
+    var audio = document.getElementById("audio");
+    var playButton = document.getElementById("play-button");
+    var playIcon = document.getElementById("play-icon");
+    var isPlaying = false;
 
-        // Display the first image initially
-        showImage(0);
+function toggleAudio() {
+    if (isPlaying) {
+        audio.pause();
+        playIcon.src = "blehh.png";
+    } else {
+        audio.play();
+        playIcon.src = "serious.png";
+    }
+    isPlaying = !isPlaying;
+}
+
+audio.addEventListener("ended", function() {
+    playIcon.src = "blehh.png";
+    isPlaying = false;
+});
+
     </script>
 </body>
 </html>
