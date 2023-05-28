@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cetus Page</title>
+    <style>
+        body {
+            background: url('osaka.gif') center center fixed;
+            background-size: cover;
+            margin: 0;
+        }
+
+        .bg {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .icons a {
+            margin: 5px;
+        }
+
+        /* Custom audio player */
+        .audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .audio-button {
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+        }
+
+        .audio-button img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">
+        <h2>cetus</h2>
+        <p class="icons">
+            <a href='https://steamcommunity.com/id/iCetus/' target="_blank">
+                <img src='steam.png' width="30px" height="30px">
+            </a>
+            <a href='https://open.spotify.com/user/n4jcfdby3tn5uzw77hgq7hokd' target="_blank">
+                <img src='spotify.png' width="30px" height="30px">
+            </a>
+            <a href='https://www.twitch.tv/justcetus' target="_blank">
+                <img src='twitch.png' width="30px" height="30px">
+            </a>
+        </p>
+    </div>
+    <div class="audio-player">
+        <button class="audio-button" id="play-button">
+            <img src="blehh.png" alt="Play">
+        </button>
+    </div>
+    <audio id="audio" src="static.mp3"></audio>
+
+    <script>
+        var audio = document.getElementById('audio');
+        var playButton = document.getElementById('play-button');
+
+        playButton.addEventListener('click', function () {
+            if (audio.paused) {
+                audio.play();
+                playButton.innerHTML = '<img src="blehh.png" alt="Pause">';
+            } else {
+                audio.pause();
+                playButton.innerHTML = '<img src="serious.png" alt="Play">';
+            }
+        });
+    </script>
+</body>
+</html>
