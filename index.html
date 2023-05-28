@@ -120,27 +120,37 @@
     <audio id="audio" src="static.mp3"></audio>
 
     <script>
-    var audio = document.getElementById("audio");
-    var playButton = document.getElementById("play-button");
-    var playIcon = document.getElementById("play-icon");
-    var isPlaying = false;
+        var audio = document.getElementById("audio");
+        var playButton = document.getElementById("play-button");
+        var playIcon = document.getElementById("play-icon");
+        var isPlaying = false;
 
-function toggleAudio() {
-    if (isPlaying) {
-        audio.pause();
-        playIcon.src = "blehh.png";
-    } else {
-        audio.play();
-        playIcon.src = "serious.png";
-    }
-    isPlaying = !isPlaying;
-}
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.src = "blehh.png";
+            } else {
+                audio.play();
+                playIcon.src = "serious.png";
+            }
+            isPlaying = !isPlaying;
+        }
 
-audio.addEventListener("ended", function() {
-    playIcon.src = "blehh.png";
-    isPlaying = false;
-});
+        audio.addEventListener("ended", function() {
+            playIcon.src = "blehh.png";
+            isPlaying = false;
+        });
 
+        var carouselImages = document.querySelectorAll(".carousel img");
+        var currentImageIndex = 0;
+
+        function changeImage() {
+            carouselImages[currentImageIndex].classList.remove("active");
+            currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+            carouselImages[currentImageIndex].classList.add("active");
+        }
+
+        setInterval(changeImage, 2000);
     </script>
 </body>
 </html>
